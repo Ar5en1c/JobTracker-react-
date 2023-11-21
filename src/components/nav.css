@@ -1,0 +1,49 @@
+nav {
+  background: #fff;
+  padding: 10px;
+  z-index: 2;
+  position: relative;
+  left: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-around;
+  border-radius: 3rem;
+  backdrop-filter: blur(15px);
+  align-items: center;
+  bottom: auto;
+}
+
+nav a {
+  background: transparent;
+  padding: 0.9rem;
+  border-radius: 50%;
+  display: flex;
+  color: var(--color-light);
+  font-size: 1.1rem;
+  color: #333;
+}
+
+nav a:hover {
+  background: rgba(185, 182, 229, 0.5);
+}
+
+nav a.download:hover {
+  background: rgba(78, 245, 27, 0.5);
+}
+
+nav a.bin:hover {
+  background: rgba(245, 67, 27, 0.5);
+}
+
+nav a.user-consent.active {
+  color: #1e90ff;
+}
+
+.md-work.active {
+  border: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+.home.active {
+  border: 2px solid rgba(0, 0, 0, 0.3);
+}

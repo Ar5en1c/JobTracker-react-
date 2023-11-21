@@ -1,0 +1,194 @@
+/* styles/popup.css */
+.container {
+  text-align: center;
+  width: 320px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0);
+  font-family: "Roboto", sans-serif;
+}
+
+.logo-div {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  width: 100%;
+}
+
+.job-data {
+  background-color: #fff;
+  height: 300px;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 15px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  overflow-y: scroll;
+}
+
+/* Style for the scrollbar track (background) */
+.job-data::-webkit-scrollbar {
+  width: 6px; /* Adjust the width of the scrollbar */
+  margin-left: 2px;
+}
+
+/* Style for the scrollbar handle */
+.job-data::-webkit-scrollbar-thumb {
+  background: #777; /* Color of the scrollbar thumb */
+  border-radius: 5px; /* Rounded corners on the scrollbar thumb */
+}
+
+/* Style for the scrollbar handle on hover */
+.job-data::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker color on hover */
+}
+
+.job-entry {
+  border-bottom: 2px solid transparent;
+  padding: 10px 0;
+  height: 40px;
+}
+
+.job-entry:not(:last-child) {
+  border-bottom-color: #f0f0f0;
+}
+
+.job-entry:hover {
+  background-color: #e8e8e8;
+}
+
+.job-link {
+  color: #1673b6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.job-link:hover {
+  text-decoration: underline;
+}
+
+.consent-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 300px;
+}
+
+.consent-text {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.consent-button,
+.deny-button {
+  background-color: #44c767;
+  color: #ffffff;
+  margin: 0 10px;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.consent-button:hover {
+  background-color: #35a753;
+}
+
+.deny-button {
+  background-color: #ff4d4d;
+}
+
+.deny-button:hover {
+  background-color: #ff3333;
+}
+
+/* Modal Backdrop */
+.consent-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 900;
+}
+
+/* Confirmation Modal Styling */
+.confirm-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 300px;
+}
+
+.confirm-modal p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.confirm-modal button {
+  margin: 0 10px;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+/* Specific hover styles for each button */
+.btn1:hover {
+  background-color: #ff3333;
+}
+
+.confirm-modal button:last-child:hover {
+  background-color: #bbbbbb;
+}
+
+/* Styling for the 'Yes, Clear' button */
+.btn1 {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+/* Styling for the 'Cancel' button */
+.confirm-modal button:last-child {
+  background-color: #cccccc;
+  color: black; /* Ensure text color is set for visibility */
+}
+
+/* Optional: Add a backdrop to gray out content behind the modal */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 900;
+}

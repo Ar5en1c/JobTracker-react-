@@ -1,0 +1,93 @@
+.job-applications-container {
+  max-height: 350px; /* Adjust based on your popup size */
+  overflow-y: auto; /* Enables vertical scrolling */
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Spacing between cards */
+}
+
+/* Style for the scrollbar track (background) */
+.job-applications-container::-webkit-scrollbar {
+  width: 10px; /* Adjust the width of the scrollbar */
+  margin-left: 2px;
+}
+
+/* Style for the scrollbar handle */
+.job-applications-container::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar thumb */
+  border-radius: 5px; /* Rounded corners on the scrollbar thumb */
+}
+
+/* Style for the scrollbar handle on hover */
+.job-applications-container::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker color on hover */
+}
+
+.job-application-card {
+  background-color: white;
+  margin: 5px;
+  padding: 10px;
+  padding-bottom: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.job-application-card h4 {
+  margin: 2px;
+  margin-bottom: 6px;
+}
+
+.job-application-card h5 {
+  margin: 2px;
+  color: #1673b6;
+  font-weight: 500;
+  font-size: small;
+}
+
+.active_date {
+  margin-top: 2px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: smaller;
+}
+
+.apply-button {
+  background-color: #4caf50; /* Green */
+  color: white;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+.apply-button:hover {
+  background-color: white; /* Green */
+  color: #4caf50;
+  border: 2px solid #4caf50;
+}
+
+.showmore {
+  background: #1673b6; /* Green background */
+  color: white; /* White text color */
+  padding: 10px 20px; /* Padding for size */
+  border: none; /* No border */
+  border-radius: 20px; /* Rounded corners for pill shape */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  cursor: pointer; /* Cursor change to indicate it's clickable */
+  font-weight: bold; /* Bold text */
+  text-align: center; /* Center the text */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+  display: block; /* Block display to fill container */
+  width: max-content; /* Adjust width to content */
+  margin: 10px auto; /* Centering the button */
+}
+
+.showmore:hover {
+  background-color: white; /* Slightly darker green on hover */
+  color: #1673b6;
+  border: 2px solid #1673b6;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Larger shadow on hover for a "lifting" effect */
+}
