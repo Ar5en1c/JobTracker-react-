@@ -13,6 +13,7 @@ import {
   handleTaleo,
   handleEightfold,
   handleDefault,
+  handleIcims,
 } from "./utils/websiteHandlers";
 
 function ContentScript() {
@@ -64,6 +65,8 @@ function ContentScript() {
         handleTaleo(applicationData, setDataCreationCompleted);
       } else if (currentWebsite.includes("eightfold.ai")) {
         handleEightfold(applicationData, setDataCreationCompleted);
+      } else if (currentWebsite.includes("icims.com")) {
+        handleIcims(applicationData, setDataCreationCompleted);
       } else {
         console.log(
           "Website handler is not defined for this site:",

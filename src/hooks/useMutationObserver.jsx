@@ -42,9 +42,13 @@ const useMutationObserver = (callback, setError) => {
             '[class="btn-sm btn-primary pointer position-apply-button"][data-test-id="position-apply-button"]'
           );
           // Access the form using its ID
-          var form1 = document.getElementById("grnhse_app");
+          const form1 = document.getElementById("grnhse_app");
+
+          const form2 = document.getElementById("icims_content_iframe");
           // Select the iframe by its ID
-          var iframe = document.getElementById("grnhse_iframe");
+          var iframe =
+            document.getElementById("grnhse_iframe") ||
+            document.getElementById("icims_content_iframe");
 
           if (iframe) {
             // Wait for the iframe to load
@@ -54,7 +58,11 @@ const useMutationObserver = (callback, setError) => {
                 iframe.contentDocument || iframe.contentWindow.document;
 
               // Now you can target the form element inside the iframe
-              var form1 = iframeDocument.getElementById("application_form");
+              var form1 =
+                iframeDocument.getElementById("application_form") ||
+                iframeDocument.querySelector(
+                  "iCIMS_MainWrapper iCIMS_FormsPage"
+                );
 
               // Add your logic to handle the form
               if (form1) {
@@ -82,7 +90,8 @@ const useMutationObserver = (callback, setError) => {
             btnSubmit7 ||
             btnSubmit8 ||
             form1 ||
-            btnSubmit9
+            btnSubmit9 ||
+            form2
           ) {
             callback();
             console.log("application div detected");

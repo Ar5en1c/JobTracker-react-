@@ -409,6 +409,41 @@ export const handleEightfold = (applicationData, setDataCreationCompleted) => {
   }, 1000);
 };
 
+export const handleIcims = (applicationData, setDataCreationCompleted) => {
+  // code for eightfold.ai
+  // Wait for page to load
+  setTimeout(() => {
+    const companyName = extractCompanyNameFromLink(
+      applicationData.jobApplicationLink
+    );
+    const positionElement = document.querySelector("h1.iCIMS_Header");
+    const positionTitle = positionElement
+      ? positionElement.textContent.trim()
+      : document.querySelector("title").textContent.trim();
+    console.log(companyName);
+    console.log(positionTitle);
+
+    if (companyName && positionTitle) {
+      setDataCreationCompleted(true);
+      const jobApplicationData = {
+        positionName: positionTitle,
+        companyName: companyName,
+        ...applicationData,
+      };
+      console.log(jobApplicationData);
+
+      console.log("ready to save");
+      // With this line to send the message to the background script
+      chrome.runtime.sendMessage({
+        action: "storeJobApplicationData",
+        jobApplicationData,
+      });
+      setDataCreationCompleted(true);
+      return true;
+    }
+  }, 1000);
+};
+
 export const handleDefault = (applicationData, setDataCreationCompleted) => {
   setTimeout(() => {
     console.log("inside default handler");
