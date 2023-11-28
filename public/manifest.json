@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Job Application Tracker",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Advanced Management for Your Job Search",
   "icons": {
     "16": "/assets/icon16.png",
@@ -12,7 +12,7 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["storage"],
+  "permissions": ["storage", "alarms"],
   "host_permissions": ["*://*.amazonaws.com/*", "*://*.greenhouse.io/*"],
   "action": {
     "default_popup": "popup.html"

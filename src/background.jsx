@@ -123,5 +123,14 @@ function initiateDataSend() {
   );
 }
 
-// Call initiateDataSend periodically, e.g., once every 24 hours
-setInterval(initiateDataSend, 4 * 60 * 60 * 1000);
+// Schedule the initiateDataSend function to run every 4 hours
+chrome.alarms.create("dataSendAlarm", {
+  periodInMinutes: 12 * 60,
+});
+
+// Add an event listener for the alarm
+chrome.alarms.onAlarm.addListener((alarm) => {
+  if (alarm.name === "dataSendAlarm") {
+    initiateDataSend();
+  }
+});
