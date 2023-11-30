@@ -27,12 +27,6 @@
   margin: 15px 0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   overflow-y: scroll;
-
-  /* Center content horizontally and vertically */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 /* Style for the scrollbar track (background) */
@@ -53,10 +47,13 @@
 }
 
 .job-entry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   border-bottom: 2px solid transparent;
   padding: 10px 0;
-  height: 40px;
-  width: 100%; /* Make the job entries take full width */
+  height: 40px; /* Adjust the height based on your preference */
 }
 
 .job-entry:not(:last-child) {
