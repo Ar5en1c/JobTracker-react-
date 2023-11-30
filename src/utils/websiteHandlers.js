@@ -464,20 +464,13 @@ export const handleDefault = (applicationData, setDataCreationCompleted) => {
       };
       console.log(jobApplicationData);
 
-      const btnSubmit9 = document.querySelector(
-        '[class="btn primary-button btn-submit"][type="submit"]'
-      );
-      document.addEventListener("click", (event) => {
-        if (event.target === btnSubmit9) {
-          // With this line to send the message to the background script
-          chrome.runtime.sendMessage({
-            action: "storeJobApplicationData",
-            jobApplicationData,
-          });
-          setDataCreationCompleted(true);
-          return true;
-        }
+      // With this line to send the message to the background script
+      chrome.runtime.sendMessage({
+        action: "storeJobApplicationData",
+        jobApplicationData,
       });
+      setDataCreationCompleted(true);
+      return true;
     }
   }, 2000);
 };
