@@ -26,6 +26,7 @@ export const handleLever = (applicationData, setDataCreationCompleted) => {
       companyName: companyName,
       ...applicationData,
     };
+    setDataCreationCompleted(true);
 
     document.addEventListener("submit", (event) => {
       // Send the updated application data to the background script
@@ -135,6 +136,7 @@ export const handleUltipro = (applicationData, setDataCreationCompleted) => {
       companyName: companyName,
       ...applicationData,
     };
+    setDataCreationCompleted(true);
 
     const sbmtBtn = document.querySelector('[data-automation="btn-submit"]');
     document.addEventListener("click", (event) => {
@@ -171,6 +173,7 @@ export const handleSmartRecruiters = (
       companyName: companyName,
       ...applicationData,
     };
+    setDataCreationCompleted(true);
 
     const sbmtBtn = document.querySelector('[data-test="footer-submit"]');
     document.addEventListener("click", (event) => {
@@ -211,6 +214,7 @@ export const handleOracleCloud = (
       companyName: companyName,
       ...applicationData,
     };
+    setDataCreationCompleted(true);
     const btnSubmit4 = document.querySelector(
       'button[type="button"][data-bind*="submit"]'
     );
@@ -258,6 +262,7 @@ export const handleJobvite = (applicationData, setDataCreationCompleted) => {
       companyName: companyName,
       ...applicationData,
     };
+    setDataCreationCompleted(true);
 
     const btnSubmit5 = document.querySelector(
       'button.jv-button-primary[type="submit"]'
@@ -306,6 +311,7 @@ export const handleAshbyhq = (applicationData, setDataCreationCompleted) => {
       ...applicationData,
     };
     console.log(jobApplicationData);
+    setDataCreationCompleted(true);
 
     const btnSubmit6 = document.querySelector(
       "button.ashby-application-form-submit-button"
@@ -349,6 +355,7 @@ export const handleTaleo = (applicationData, setDataCreationCompleted) => {
       companyName: companyName,
       ...applicationData,
     };
+    setDataCreationCompleted(true);
     console.log(jobApplicationData);
 
     const btnSubmit7 = document.querySelector(
@@ -389,6 +396,7 @@ export const handleEightfold = (applicationData, setDataCreationCompleted) => {
         companyName: companyName,
         ...applicationData,
       };
+      setDataCreationCompleted(true);
       console.log(jobApplicationData);
 
       const btnSubmit8 = document.querySelector(
@@ -430,6 +438,7 @@ export const handleIcims = (applicationData, setDataCreationCompleted) => {
         companyName: companyName,
         ...applicationData,
       };
+      setDataCreationCompleted(true);
       console.log(jobApplicationData);
 
       console.log("ready to save");
@@ -463,13 +472,14 @@ export const handleDefault = (applicationData, setDataCreationCompleted) => {
         ...applicationData,
       };
       console.log(jobApplicationData);
+      setDataCreationCompleted(true);
 
       // With this line to send the message to the background script
       chrome.runtime.sendMessage({
         action: "storeJobApplicationData",
         jobApplicationData,
       });
-      setDataCreationCompleted(true);
+
       return true;
     }
   }, 2000);
