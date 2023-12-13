@@ -2,7 +2,7 @@
 .container {
   text-align: center;
   width: 320px;
-  padding: 15px;
+  padding: 10px 10px 0 10px;
   background-color: rgba(255, 255, 255, 0);
   font-family: "Roboto", sans-serif;
 }

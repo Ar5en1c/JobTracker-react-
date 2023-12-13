@@ -8,7 +8,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         const jobApplications = result.jobApplications || [];
         const existingJobIndex = jobApplications.findIndex(
           (job) =>
-            job.positionName === jobApplicationData.positionName &&
             job.jobApplicationLink === jobApplicationData.jobApplicationLink
         );
         if (existingJobIndex !== -1) {
@@ -123,9 +122,18 @@ function initiateDataSend() {
   );
 }
 
-// Schedule the initiateDataSend function to run every 4 hours
-chrome.alarms.create("dataSendAlarm", {
-  periodInMinutes: 12 * 60,
+// Create the alarm when the extension is installed or updated
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.alarms.create("dataSendAlarm", {
+    periodInMinutes: 4 * 60,
+  });
+});
+
+// Also create the alarm when the browser starts up
+chrome.runtime.onStartup.addListener(() => {
+  chrome.alarms.create("dataSendAlarm", {
+    periodInMinutes: 4 * 60,
+  });
 });
 
 // Add an event listener for the alarm
