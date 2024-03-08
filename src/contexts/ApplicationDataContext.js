@@ -8,7 +8,7 @@ export const useApplicationData = () => {
 
 export const ApplicationDataProvider = ({ children }) => {
   const jobApplicationLink = window.location.href;
-  const dateOfApplication = new Date().toLocaleDateString();
+  const dateOfApplication = new Date();
 
   const value = {
     jobApplicationLink,

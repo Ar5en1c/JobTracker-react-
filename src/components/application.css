@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   gap: 5px; /* Spacing between cards */
+  padding: 15px; /* Add padding for visual breathing room */
 }
 
 /* Style for the scrollbar track (background) */
@@ -35,11 +36,18 @@
   border-radius: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   text-align: center;
+  transition: all 0.2s ease-in-out; /* Smooth transition on hover */
+}
+
+.job-application-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+  transform: translateY(-2px); /* Subtle lift effect */
 }
 
 .job-application-card h4 {
   margin: 2px;
   margin-bottom: 6px;
+  font-weight: bold; /* Emphasize job title */
 }
 
 .job-application-card h5 {
@@ -47,6 +55,7 @@
   color: #1673b6;
   font-weight: 500;
   font-size: small;
+  text-decoration: underline; /* Underline company name */
 }
 
 .filters {
@@ -111,6 +120,8 @@
   margin-bottom: 10px;
   padding: 10px;
   font-size: smaller;
+  color: #666; /* Slightly muted color for less emphasis */
+  font-style: italic; /* Indicate secondary information */
 }
 
 .apply-button {

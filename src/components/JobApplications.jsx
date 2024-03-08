@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import JobApplicationCard from "./JobApplicationCard";
 import "./application.css";
-import useJobApplications from "../hooks/useJobApplications"; // Import the custom hook
-import { FaSearch } from "react-icons/fa"; // Import the search icon
+import useJobApplications from "../hooks/useJobApplications";
+import { FaSearch } from "react-icons/fa";
 
 const JobApplications = ({ apiEndpoint }) => {
   const [localApplications, setLocalApplications] = useState([]);
-  const [sort, setSort] = useState("newest"); // State for sort
-  const [searchTerm, setSearchTerm] = useState(""); // State for search term
+  const [sort, setSort] = useState("newest");
+  const [searchTerm, setSearchTerm] = useState("");
 
   // Fetch local job applications
   useEffect(() => {
@@ -20,17 +20,15 @@ const JobApplications = ({ apiEndpoint }) => {
   const { jobApplications, nextToken, loading, error, fetchJobApplications } =
     useJobApplications(apiEndpoint);
 
-  // Function to check if a job application is new
-  const isNewApplication = (application) => {
-    return !localApplications.some(
-      (localApp) =>
-        localApp.jobApplicationLink === application.jobApplicationLink
-    );
-  };
-
   // Filter and sort the job applications before rendering
   const displayedJobApplications = jobApplications
-    .filter(isNewApplication)
+    .filter(
+      (application) =>
+        !localApplications.some(
+          (localApp) =>
+            localApp.jobApplicationLink === application.jobApplicationLink
+        )
+    )
     .filter(
       (application) =>
         !searchTerm ||
@@ -39,13 +37,11 @@ const JobApplications = ({ apiEndpoint }) => {
             .toLowerCase()
             .includes(searchTerm.toLowerCase()))
     )
-    .sort((a, b) =>
-      sort === "newest"
-        ? new Date(b.dateOfApplication || 0) -
-          new Date(a.dateOfApplication || 0)
-        : new Date(a.dateOfApplication || 0) -
-          new Date(b.dateOfApplication || 0)
-    );
+    .sort((a, b) => {
+      const dateA = new Date(a.dateOfApplication || 0);
+      const dateB = new Date(b.dateOfApplication || 0);
+      return sort === "newest" ? dateB - dateA : dateA - dateB;
+    });
 
   return (
     <div className="job-applications-container">

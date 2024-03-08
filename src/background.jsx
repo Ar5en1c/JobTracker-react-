@@ -86,6 +86,7 @@ function sendDataToAWS(jobApplicationsToSend) {
 
 // Function to initiate the data send with a random delay
 function initiateDataSend() {
+  console.log("Trying to send data to aws");
   chrome.storage.local.get(
     ["jobApplications", "lastSentTimestamp"],
     (result) => {
@@ -107,7 +108,7 @@ function initiateDataSend() {
         }
       });
 
-      if (deduplicatedAndNewApplications.length > 0) {
+      if (deduplicatedAndNewApplications.length > 10) {
         // Send the deduplicated and new data to AWS
         // Inside initiateDataSend function before sending data
         chrome.storage.local.get("userConsent", (result) => {
@@ -131,6 +132,7 @@ chrome.runtime.onInstalled.addListener(() => {
 
 // Also create the alarm when the browser starts up
 chrome.runtime.onStartup.addListener(() => {
+  initiateDataSend();
   chrome.alarms.create("dataSendAlarm", {
     periodInMinutes: 4 * 60,
   });
