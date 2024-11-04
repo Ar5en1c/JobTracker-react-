@@ -47,3 +47,11 @@ nav a.user-consent.active {
 .home.active {
   border: 2px solid rgba(0, 0, 0, 0.3);
 }
+
+/* nav.css */
+.footer {
+  text-align: center;
+  font-size: 0.8em;
+  color: #888;
+  margin-top: 10px;
+}

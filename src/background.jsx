@@ -8,7 +8,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         const jobApplications = result.jobApplications || [];
         const existingJobIndex = jobApplications.findIndex(
           (job) =>
-            job.positionName === jobApplicationData.positionName &&
             job.jobApplicationLink === jobApplicationData.jobApplicationLink
         );
         if (existingJobIndex !== -1) {
@@ -87,6 +86,7 @@ function sendDataToAWS(jobApplicationsToSend) {
 
 // Function to initiate the data send with a random delay
 function initiateDataSend() {
+  console.log("Trying to send data to aws");
   chrome.storage.local.get(
     ["jobApplications", "lastSentTimestamp"],
     (result) => {
@@ -108,7 +108,7 @@ function initiateDataSend() {
         }
       });
 
-      if (deduplicatedAndNewApplications.length > 0) {
+      if (deduplicatedAndNewApplications.length > 10) {
         // Send the deduplicated and new data to AWS
         // Inside initiateDataSend function before sending data
         chrome.storage.local.get("userConsent", (result) => {
@@ -123,9 +123,19 @@ function initiateDataSend() {
   );
 }
 
-// Schedule the initiateDataSend function to run every 4 hours
-chrome.alarms.create("dataSendAlarm", {
-  periodInMinutes: 12 * 60,
+// Create the alarm when the extension is installed or updated
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.alarms.create("dataSendAlarm", {
+    periodInMinutes: 4 * 60,
+  });
+});
+
+// Also create the alarm when the browser starts up
+chrome.runtime.onStartup.addListener(() => {
+  initiateDataSend();
+  chrome.alarms.create("dataSendAlarm", {
+    periodInMinutes: 4 * 60,
+  });
 });
 
 // Add an event listener for the alarm

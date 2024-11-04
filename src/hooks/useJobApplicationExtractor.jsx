@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+// hooks/useJobApplicationExtractor.js
+import { useCallback } from "react";
 import {
   handleLever,
   handleGreenhouse,
@@ -10,69 +11,66 @@ import {
   handleAshbyhq,
   handleTaleo,
   handleEightfold,
+  handleDefault,
+  handleIcims,
 } from "../utils/websiteHandlers";
 
-const useJobApplicationExtractor = (onError) => {
-  const jobApplicationLink = window.location.href;
-  const dateOfApplication = new Date().toLocaleDateString();
-  const applicationData = { jobApplicationLink, dateOfApplication };
+export const useJobApplicationExtractor = (
+  setDataCreationCompleted,
+  dataCreationCompleted
+) => {
+  return useCallback(() => {
+    if (dataCreationCompleted) {
+      return;
+    }
 
-  useEffect(() => {
-    // Function to handle errors
-    const handleErrors = (error) => {
-      console.log("Error in useJobApplicationExtractor:", error);
-      if (typeof onError === "function") {
-        onError(error);
-      }
-    };
+    const jobApplicationLink = window.location.href;
+    const dateOfApplication = new Date().toISOString().slice(0, 10);
+    const applicationData = { jobApplicationLink, dateOfApplication };
+
+    const currentWebsite = window.location.hostname;
+    console.log("Job application data extraction active for", currentWebsite);
 
     try {
-      const currentWebsite = window.location.hostname;
-      console.log("useJobApplicationExtractor active for", currentWebsite);
-
-      // Use a switch-case for cleaner code
-      switch (true) {
-        case currentWebsite.includes("lever.co"):
-          handleLever(applicationData);
-          break;
-        case currentWebsite.includes("greenhouse.io"):
-          handleGreenhouse(applicationData);
-          break;
-        case currentWebsite.includes("myworkdayjobs.com"):
-          handleMyWorkday(applicationData);
-          break;
-        case currentWebsite.includes("ultipro.com"):
-          handleUltipro(applicationData);
-          break;
-        case currentWebsite.includes("jobs.smartrecruiters.com"):
-          handleSmartRecruiters(applicationData);
-          break;
-        case currentWebsite.includes("oraclecloud.com"):
-          handleOracleCloud(applicationData);
-          break;
-        case currentWebsite.includes("jobvite.com"):
-          handleJobvite(applicationData);
-          break;
-        case currentWebsite.includes("ashbyhq.com"):
-          handleAshbyhq(applicationData);
-          break;
-        case currentWebsite.includes("taleo.net"):
-          handleTaleo(applicationData);
-          break;
-        case currentWebsite.includes("eightfold.ai"):
-          handleEightfold(applicationData);
-          break;
-        default:
-          console.log("No handler for current website");
-          break;
+      if (currentWebsite.includes("lever.co")) {
+        handleLever(applicationData, setDataCreationCompleted);
+      } else if (currentWebsite.includes("greenhouse.io")) {
+        handleGreenhouse(
+          applicationData,
+          setDataCreationCompleted,
+          dataCreationCompleted
+        );
+      } else if (currentWebsite.includes("myworkdayjobs.com")) {
+        handleMyWorkday(applicationData, setDataCreationCompleted);
+      } else if (currentWebsite.includes("ultipro.com")) {
+        handleUltipro(applicationData, setDataCreationCompleted);
+      } else if (currentWebsite.includes("jobs.smartrecruiters.com")) {
+        handleSmartRecruiters(applicationData, setDataCreationCompleted);
+      } else if (currentWebsite.includes("oraclecloud.com")) {
+        handleOracleCloud(applicationData, setDataCreationCompleted);
+      } else if (currentWebsite.includes("jobvite.com")) {
+        handleJobvite(applicationData, setDataCreationCompleted);
+      } else if (currentWebsite.includes("ashbyhq.com")) {
+        handleAshbyhq(applicationData, setDataCreationCompleted);
+      } else if (currentWebsite.includes("taleo.net")) {
+        handleTaleo(applicationData, setDataCreationCompleted);
+      } else if (currentWebsite.includes("eightfold.ai")) {
+        handleEightfold(applicationData, setDataCreationCompleted);
+      } else if (currentWebsite.includes("icims.com")) {
+        handleIcims(applicationData, setDataCreationCompleted);
+      } else {
+        console.log(
+          "Website handler is not defined for this site:",
+          currentWebsite
+        );
+        handleDefault(
+          applicationData,
+          setDataCreationCompleted,
+          dataCreationCompleted
+        );
       }
     } catch (error) {
-      handleErrors(error);
+      throw error;
     }
-  }, [onError, applicationData]); // Only re-run if onError or applicationData changes
-
-  // Return a no-op function if you need to provide a callback
-  return () => {};
+  }, [setDataCreationCompleted, dataCreationCompleted]);
 };
-
-export default useJobApplicationExtractor;

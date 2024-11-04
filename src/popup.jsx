@@ -10,7 +10,7 @@ import JobApplications from "./components/JobApplications";
 // Popup component
 function Popup() {
   const [jobApplications, setJobApplications] = useState([]);
-  const [userConsent, setUserConsent] = useState(null); // null indicates unknown consent status
+  const [userConsent, setUserConsent] = useState(true); // null indicates unknown consent status
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showJobApplications, setShowJobApplications] = useState(false);
   const [activeIcon, setActiveIcon] = useState("home");
@@ -59,7 +59,13 @@ function Popup() {
       {/* Consent check */}
       {userConsent === null && <ConsentForm onConsentChange={handleConsent} />}
       <div className="logo-div">
-        <img className="logo" src="/assets/logo.png" alt="Logo" />
+        <a
+          href="https://chromewebstore.google.com/detail/job-application-tracker/mggpimiojdmbijnlfeibpokbjnbcblnl"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img className="logo" src="/assets/logo.png" alt="Logo" />
+        </a>
       </div>
       {/* Toggle between ApplicationData and JobApplications */}
       {showJobApplications ? (
